@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-align: center;
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+button {
+    cursor: pointer;
+}
+
+#backBtn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+#moneyText {
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+#betContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#betInput {
+    width: 200px;
+    height: 50px;
+    padding: 5px;
+    font-size: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
+
+#betBtn {
+    width: 100px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.hand {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.hand-value {
+    font-size: 24px;
+    color: #000;
+    margin: 10px 0;
+}
+
+#controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#hitBtn, #standBtn, #doubleBtn, #splitBtn {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#deck {
+    margin-bottom: 20px;
+}
+
+#deck img {
+    width: 50px;
+    height: 75px;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.hand img {
+    width: 50px;
+    height: 75px;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+.drawn-card {
+    position: inherit;
+    width: 50px;
+    height: 75px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    animation: draw 0.5s ease-in-out forwards;
+}
+
+@keyframes draw {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

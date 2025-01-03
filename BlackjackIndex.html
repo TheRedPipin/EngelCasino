@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
+    <script src="BlackjackScript.js"></script>
+    <link rel="stylesheet" href="BlackjackStyles.css">
+    <link rel="icon" type="image/x-icon" href="Cards\Card10.png">
+</head>
+<body>
+    <button onclick="returnToSender()" id="backBtn">RETURN</button>
+    <div id="moneyText">💎GEMS: ???</div>
+    <div id="deck">
+        <img src="cards/Card52.png" alt="Deck">
+    </div>
+    <div id="gameContainer">
+        <div id="dealerValue" class="hand-value">Dealer: ???</div>
+        <div id="dealerHand" class="hand"></div>
+        <div id="playerHand" class="hand"></div>
+        <div id="playerValue" class="hand-value">Player: ???</div>
+    </div>
+    <div id="controls">
+        <button onclick="hit()" id="hitBtn" disabled>HIT</button>
+        <button onclick="stand()" id="standBtn" disabled>STAND</button>
+        <button onclick="double()" id="doubleBtn" disabled>DOUBLE</button>
+        <button onclick="split()" id="splitBtn" disabled>SPLIT</button>
+    </div>
+    <div id="betContainer">
+        <input type="number" id="betInput" placeholder="Bet Amount" min="0" oninput="checkValue(this);">
+        <button onclick="placeBet()" min="0" id="betBtn">PLACE BET</button>
+    </div>
+</body>
+</html>
