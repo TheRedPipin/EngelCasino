@@ -170,4 +170,20 @@ button:active {
         width: 120px;
         height: 180px;
     }
+
+    .gameButtonsContainer {
+        top: 50%;
+        left: 50%;
+        width: 90%;
+    }
+
+    .gameButtons {
+        width: 80px;
+        height: 80px;
+        font-size: 30px;
+    }
+
+    #higherContainer, #lowerContainer {
+        flex-direction: column;
+    }
 }

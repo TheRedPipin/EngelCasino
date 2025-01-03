@@ -147,6 +147,10 @@ button{
 
 /* Mobile support */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
     #moneyText {
         font-size: 20px;
         top: 5%;
@@ -167,6 +171,8 @@ button{
     #controls {
         top: 70%;
         left: 50%;
+        width: 90%;
+        padding: 10px;
     }
 
     #betInput, #startBtn, #resetBtn {
@@ -177,6 +183,7 @@ button{
 
     #progressBar {
         height: 500px;
+        left: 90%;
     }
 
     .multiplierText {
@@ -189,5 +196,59 @@ button{
 
     #speedLabels span {
         font-size: 12px;
+    }
+}
+
+/* Tablet support */
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+
+    #moneyText {
+        font-size: 25px;
+        top: 8%;
+    }
+
+    #mapShell {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        top: 45%;
+        left: 50%;
+    }
+
+    .mapSpot {
+        width: 90px;
+        height: 90px;
+    }
+
+    #controls {
+        top: 60%;
+        left: 50%;
+        width: 80%;
+        padding: 15px;
+    }
+
+    #betInput, #startBtn, #resetBtn {
+        width: 180px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    #progressBar {
+        height: 600px;
+        left: 85%;
+    }
+
+    .multiplierText {
+        font-size: 14px;
+    }
+
+    #speedLabels {
+        width: 180px;
+    }
+
+    #speedLabels span {
+        font-size: 14px;
     }
 }

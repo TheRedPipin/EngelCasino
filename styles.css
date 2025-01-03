@@ -1,0 +1,52 @@
+/* Ensure images and other media are responsive */
+img, video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Example media query for mobile devices */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+    .header, .footer {
+        text-align: center;
+    }
+    .nav {
+        display: block;
+        text-align: center;
+    }
+    .nav a {
+        display: block;
+        margin: 5px 0;
+    }
+    /* Add more styles as needed for mobile responsiveness */
+}
+
+/* Example media query for tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 16px;
+    }
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+    /* Add more styles as needed for tablet responsiveness */
+}
+
+/* Example media query for desktops */
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+    .container {
+        width: 80%;
+        padding: 30px;
+    }
+    /* Add more styles as needed for desktop responsiveness */
+}
