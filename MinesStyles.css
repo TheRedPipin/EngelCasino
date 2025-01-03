@@ -135,13 +135,13 @@ body{
     #mapShell {
         grid-template-columns: repeat(3, 1fr);
         gap: 5px;
-        top: 40%;
+        top: 30%;
         left: 50%;
     }
 
     .mapSpot {
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
     }
 
     #controls {
