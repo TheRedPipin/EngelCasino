@@ -123,3 +123,43 @@ body{
     animation: shake 0.5s;
     animation-iteration-count: 1;
 }
+
+/* Mobile support */
+@media (max-width: 768px) {
+    #multiText {
+        font-size: 20px;
+        top: 10%;
+        left: 50%;
+    }
+
+    #mapShell {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        top: 40%;
+        left: 50%;
+    }
+
+    .mapSpot {
+        width: 80px;
+        height: 80px;
+    }
+
+    #controls {
+        top: 70%;
+        left: 50%;
+    }
+
+    #moneyText {
+        font-size: 16px;
+    }
+
+    #bombInput, #betInput {
+        width: 150px;
+        height: 25px;
+    }
+
+    #startBtn, #resetBtn {
+        width: 150px;
+        height: 80px;
+    }
+}

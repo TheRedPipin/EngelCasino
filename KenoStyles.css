@@ -144,3 +144,50 @@ button{
 .mapSpot.enlarge {
     animation: enlarge 0.5s ease-in-out;
 }
+
+/* Mobile support */
+@media (max-width: 768px) {
+    #moneyText {
+        font-size: 20px;
+        top: 5%;
+    }
+
+    #mapShell {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        top: 40%;
+        left: 50%;
+    }
+
+    .mapSpot {
+        width: 80px;
+        height: 80px;
+    }
+
+    #controls {
+        top: 70%;
+        left: 50%;
+    }
+
+    #betInput, #startBtn, #resetBtn {
+        width: 150px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    #progressBar {
+        height: 500px;
+    }
+
+    .multiplierText {
+        font-size: 12px;
+    }
+
+    #speedLabels {
+        width: 150px;
+    }
+
+    #speedLabels span {
+        font-size: 12px;
+    }
+}
