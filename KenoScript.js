@@ -6,9 +6,12 @@ let amountChosen = 0;
 let correctAmount = 0;
 let tempMoney = 0;
 let multipliers = [];
-let startMulti = 5;
+let startMulti = 3;
+let chooseSpeed = 200;
+let started = false;
+let lastBet = 0;
 window.onload = function() {
-    money = parseFloat(localStorage.getItem('money')).toFixed(2);
+    money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
     for (let i = 0; i < rows; i++){
         map.push([]);
         for (let j = 0; j < columns; j++){
@@ -40,13 +43,18 @@ window.onload = function() {
     setInterval(() => {
         document.getElementById('moneyText').innerText = `💎GEMS: ${money}`;
         document.getElementById("betInput").max = money;
-        if (amountChosen === 0 || document.getElementById('betInput').value == 0 || document.getElementById('betInput').value === '') {
+        if (amountChosen === 0 || document.getElementById('betInput').value == 0 || document.getElementById('betInput').value === '' || started == true) {
             document.getElementById('startBtn').disabled = true;
         }
         else {
             document.getElementById('startBtn').disabled = false;
         }
     }, 10);
+    setInterval(() => {
+        if (parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) != money) {
+            document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
+        }
+    },1000);
 }
 
 function resetMapColors() {
@@ -63,7 +71,10 @@ function resetMapColors() {
 
 function startGame() {
     resetMapColors();
+    started = true;
+    document.getElementById('startBtn').disabled = true;
     tempMoney = document.getElementById('betInput').value;
+    lastBet = tempMoney;
     money -= tempMoney;
     document.getElementById('startBtn').disabled = true;
     let chosenCount = 0;
@@ -80,24 +91,38 @@ function startGame() {
         } while (chosenNumbers.has(`${row}-${column}`));
 
         chosenNumbers.add(`${row}-${column}`);
+        let button = document.querySelector(`button[data-row="${row}"][data-column="${column}"]`);
+        button.classList.add('enlarge');
+        setTimeout(() => {
+            button.classList.remove('enlarge');
+        }, 500);
+
         if (map[row][column] === 1) {
             correctAmount++;
             document.getElementById('progressBar').children[correctAmount-1].style.backgroundColor = 'orange';
-            let button = document.querySelector(`button[data-row="${row}"][data-column="${column}"]`);
             button.style.backgroundColor = 'green';
-        }
-        else {
-            let button = document.querySelector(`button[data-row="${row}"][data-column="${column}"]`);
+        } else {
             button.style.backgroundColor = 'red';
         }
         chosenCount++;
-    }, 200);
-    tempMoney *= multipliers[correctAmount];
-    money += tempMoney;
-    money = parseFloat(money).toFixed(2);
-    money = parseFloat(money);
-    console.log(typeof money);
-    correctAmount = 0;
+    }, chooseSpeed);
+    setTimeout(() => {
+        if (correctAmount !== 0) {
+            tempMoney *= multipliers[correctAmount-1];
+        } else {
+            tempMoney = 0;
+        }
+        console.log(correctAmount);
+        console.log(multipliers);
+        console.log(tempMoney);
+        money += tempMoney;
+        money = parseFloat(money).toFixed(2);
+        money = parseFloat(money);
+        correctAmount = 0;
+        document.getElementById('startBtn').disabled = false;
+        document.getElementById('betInput').value = lastBet;
+        started = false;
+    }, chooseSpeed*10);
 }
 
 function updateProgressBar() {
@@ -153,7 +178,24 @@ function checkValue(sender) {
 }
 
 function returnToSender() {
-    money = parseFloat(money).toFixed(2); // Round to 2 decimal places
+    money = parseFloat(money).toFixed(2);
     localStorage.setItem('money', money);
     window.location.href = 'MainIndex.html';
+}
+
+function updateSpeed(value) {
+    switch (parseInt(value)) {
+        case 1:
+            chooseSpeed = 200;// Slow
+            break;
+        case 2:
+            chooseSpeed = 100; // Medium
+            break;
+        case 3:
+            chooseSpeed = 50; // Fast
+            break;
+        case 4:
+            chooseSpeed = 10; // Instant
+            break;
+    }
 }

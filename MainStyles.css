@@ -31,6 +31,59 @@ body {
     text-shadow: 1px 1px 2px #aaa;
 }
 
+#resetBtn {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    background-color: #ffcc00;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#resetBtn:hover {
+    background-color: #ff9900;
+}
+
+#gemBtn {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    background-color: #00ccff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#gemBtn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#gemBtn:hover:not(:disabled) {
+    background-color: #0099cc;
+}
+
+#footerText {
+    position: absolute;
+    bottom: 5%;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    text-shadow: 1px 1px 2px #aaa;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -92,6 +145,7 @@ body {
         opacity: 0;
     }
 }
+
 
 .falling-card {
     position: absolute;

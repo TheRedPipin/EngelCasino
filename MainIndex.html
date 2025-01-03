@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engel Casino</title>
     <link rel="stylesheet" href="MainStyles.css">
+    <link rel="icon" type="image/x-icon" href="Favicons\tile058.png">
     <script src="MainScript.js"></script>
     </style>
 </head>
@@ -12,12 +13,21 @@
     <div id="titleText">Engel's Queen of Cards Casino!</div>
     <div id="moneyText">💎Gems: </div>
     <div class="dropdown">
-        <button class="dropbtn">Select Game</button>
+        <button class="dropbtn">Map game</button>
         <div class="dropdown-content">
             <a href="MinesIndex.html">Mines</a>
-            <a href="HighLowIndex.html">High Low</a>
             <a href="KenoIndex.html">Keno</a>
         </div>
     </div>
+    <div class="dropdown">
+        <button class="dropbtn">Card Games</button>
+        <div class="dropdown-content">
+            <a href="BlackjackIndex.html">Blackjack</a>
+            <a href="HighLowIndex.html">High Low</a>
+        </div>
+    </div>
+    <div id="gemBtn" onclick="addGem()">Get 1 Gem</div>
+    <div id="resetBtn" onclick="resetMoney()">?DONATE ALL TO CHARITY?*</div>
+    <div id="footerText">*Not a real charity!</div>
 </body>
 </html>

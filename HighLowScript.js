@@ -13,7 +13,7 @@ let currentIndex = 0;
 let higherPercentage = 0;
 let lowerPercentage = 0;
 window.onload = function() {
-    money = parseFloat(localStorage.getItem('money'));
+    money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
     animateMoneyText(money);
     setInterval(() => {
         document.getElementById('betInput').max = money;
@@ -29,6 +29,11 @@ window.onload = function() {
         document.getElementById('lowerPercentage').innerHTML = `${lowerPercentage.toFixed(2)}%`;
         oldMoney = money;
     }, 10);
+    setInterval(() => {
+        if (parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) != money) {
+            document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
+        }
+    },1000);
 }
 
 function animateMoneyText(targetMoney) {
@@ -81,9 +86,12 @@ function resetGame(type) {
 function guess(type) {
     let nextCardIndex = Math.floor(Math.random() * deck.length);
     let nextCard = deck[nextCardIndex];
-    document.getElementById('nextCardImg').src = `cards/Card${nextCard}.png`;
+    const nextCardImg = document.getElementById('nextCardImg');
+    nextCardImg.classList.add('card-reveal');
+    nextCardImg.src = `cards/Card${nextCard}.png`;
 
     setTimeout(() => {
+        nextCardImg.classList.remove('card-reveal');
         if (type == 0 && currentCard <= nextCard) {
             currentMulti += 1.0 + (1.0 - parseFloat((higherPercentage / 100).toFixed(2)));
         } else if (type == 1 && currentCard >= nextCard) {
@@ -97,7 +105,7 @@ function guess(type) {
         currentMulti = parseFloat(currentMulti.toFixed(2));
         currentCard = nextCard;
         document.getElementById('currentCardImg').src = `cards/Card${currentCard}.png`;
-        document.getElementById('nextCardImg').src = `cards/Card52.png`;
+        nextCardImg.src = `cards/Card52.png`;
     }, 500);
 }
 

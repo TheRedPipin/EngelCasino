@@ -116,3 +116,31 @@ button{
     font-size: 14px;
     color: #000;
 }
+
+#speedLabels {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-top: 5px;
+}
+
+#speedLabels span {
+    font-size: 14px;
+    color: #000;
+}
+
+@keyframes enlarge {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.mapSpot.enlarge {
+    animation: enlarge 0.5s ease-in-out;
+}

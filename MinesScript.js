@@ -13,7 +13,7 @@ let startingMulti = [
 ];
 
 window.onload = function() {
-    money = localStorage.getItem('money');
+    money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
     console.log(money);
     for (let i = 0; i < rows; i++){
         for (let j = 0; j < columns; j++){
@@ -53,7 +53,7 @@ window.onload = function() {
                             }
                             if (remainingSquares > 0) {
                                 currentMulti = nextMulti;
-                                nextMulti *= Math.pow(1 + (remainingBombs / remainingSquares), 1.25);
+                                nextMulti *= Math.pow(1 + (remainingBombs / remainingSquares), 1.55);
                             }
                             nextMulti = parseFloat(nextMulti.toFixed(2));
                             let allFound = true;
@@ -77,10 +77,15 @@ window.onload = function() {
             });
             document.getElementById('mapShell').appendChild(button);
         }
+        setInterval(() => {
+            if (parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) != money) {
+                document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
+            }
+        },1000);
     }
     document.getElementById('betInput').max = money;
     setInterval(function() {
-        document.getElementById('resetBtn').innerText = `Cash Out \n💎${tempMoney*currentMulti}`;
+        document.getElementById('resetBtn').innerText = `Cash Out \n💎${(tempMoney*currentMulti).toFixed(2)}`;
         document.getElementById('multiText').innerHTML = `x${currentMulti}`;
         if (start == false){
             document.getElementById('betInput').max = money;
@@ -94,8 +99,6 @@ window.onload = function() {
         }
         else if (start == true){
             document.getElementById('resetBtn').disabled = false;
-            console.log(document.getElementsByClassName('shake').length);
-            console.log(start);
         }
         if (oldMoney != money) {
             animateMoneyText(money);
