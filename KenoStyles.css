@@ -160,7 +160,7 @@ button{
         grid-template-columns: repeat(3, 1fr);
         gap: 5px;
         top: 30%;
-        left: 50%;
+        left: 40%;
     }
 
     .mapSpot {
@@ -183,7 +183,8 @@ button{
 
     #progressBar {
         height: 500px;
-        left: 90%;
+        left: 87%;
+        top: 30%;
     }
 
     .multiplierText {
