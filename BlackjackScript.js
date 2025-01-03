@@ -78,14 +78,14 @@ function shuffleDeck(deck) {
 function drawCard(target) {
     const card = deck.pop();
     const cardImg = document.createElement('img');
-    cardImg.src = `cards/Card${card}.png`;
+    cardImg.src = `docs/assets/Cards/Card${card}.png`;
     cardImg.classList.add('drawn-card');
     document.getElementById('deck').appendChild(cardImg);
     return new Promise(resolve => {
         setTimeout(() => {
             cardImg.remove();
             const cardElement = document.createElement('img');
-            cardElement.src = `cards/Card${card}.png`;
+            cardElement.src = `docs/assets/Cards/Card${card}.png`;
             target.appendChild(cardElement);
             resolve(card);
         }, 500);
@@ -102,16 +102,16 @@ function updateHands(type) {
 
     playerHand.forEach(card => {
         const cardImg = document.createElement('img');
-        cardImg.src = `cards/Card${card}.png`;
+        cardImg.src = `docs/assets/Cards/Card${card}.png`;
         playerHandDiv.appendChild(cardImg);
     });
 
     dealerHand.forEach((card, index) => {
         const cardImg = document.createElement('img');
         if (type === 0) {
-            cardImg.src = index === 0 ? 'cards/Card52.png' : `cards/Card${card}.png`;
+            cardImg.src = index === 0 ? 'docs/assets/Cards/Card52.png' : `docs/assets/Cards/Card${card}.png`;
         } else {
-            cardImg.src = `cards/Card${card}.png`;
+            cardImg.src = `docs/assets/Cards/Card${card}.png`;
         }
         dealerHandDiv.appendChild(cardImg);
     });
@@ -132,7 +132,7 @@ async function stand() {
     const dealerHandDiv = document.getElementById('dealerHand');
     const hiddenCard = dealerHandDiv.children[0];
     hiddenCard.classList.add('reveal-card');
-    hiddenCard.src = `cards/Card${dealerHand[0]}.png`;
+    hiddenCard.src = `docs/assets/Cards/Card${dealerHand[0]}.png`;
 
     const drawDealerCard = async () => {
         while (calculateHandValue(dealerHand) < 17) {

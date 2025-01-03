@@ -19,7 +19,7 @@ window.onload = function() {
         document.getElementById('betInput').max = money;
         document.getElementById('resetBtn').innerText = `Cash Out \n💎${(tempMoney*currentMulti).toFixed(2)}`;
         document.getElementById('multiText').innerHTML = `x${currentMulti}`;
-        document.getElementById('currentCardImg').src = `cards/Card${currentCard}.png`;
+        document.getElementById('currentCardImg').src = `docs/assets/Cards/Card${currentCard}.png`;
         if (oldMoney != money) {
             animateMoneyText(money);
         }
@@ -76,7 +76,7 @@ function resetGame(type) {
     currentMulti = 0;
     document.getElementById('startBtn').disabled = false;
     document.getElementById('resetBtn').disabled = true;
-    document.getElementById('nextCardImg').src = `cards/Card52.png`;
+    document.getElementById('nextCardImg').src = `docs/assets/Cards/Card52.png`;
     let gameButtons = document.getElementsByClassName('gameButtons');
     for (let button of gameButtons) {
         button.disabled = true;
@@ -88,7 +88,7 @@ function guess(type) {
     let nextCard = deck[nextCardIndex];
     const nextCardImg = document.getElementById('nextCardImg');
     nextCardImg.classList.add('card-reveal');
-    nextCardImg.src = `cards/Card${nextCard}.png`;
+    nextCardImg.src = `docs/assets/Cards/Card${nextCard}.png`;
 
     setTimeout(() => {
         nextCardImg.classList.remove('card-reveal');
@@ -104,8 +104,8 @@ function guess(type) {
         }
         currentMulti = parseFloat(currentMulti.toFixed(2));
         currentCard = nextCard;
-        document.getElementById('currentCardImg').src = `cards/Card${currentCard}.png`;
-        nextCardImg.src = `cards/Card52.png`;
+        document.getElementById('currentCardImg').src = `docs/assets/Cards/Card${currentCard}.png`;
+        nextCardImg.src = `docs/assets/Cards/Card52.png`;
     }, 500);
 }
 

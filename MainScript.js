@@ -31,10 +31,10 @@ function animateMoneyText(targetMoney) {
 function createFallingCards() {
     const cardImages = [];
     for (let i = 0; i < 52; i++) {
-        cardImages.push(`cards/Card${i}.png`);
+        cardImages.push(`docs/assets/Cards/Card${i}.png`);
     }
     for (let i = 1; i < 9; i++) {
-        cardImages.push(`cards/chips${i}.png`);
+        cardImages.push(`docs/assets/Cards/chips${i}.png`);
     }
     setInterval(() => {
         for (let i = 0; i < 3; i++) {
