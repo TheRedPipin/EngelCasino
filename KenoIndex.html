@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keno</title>
+    <link rel="stylesheet" href="KenoStyles.css">
+    <script src="KenoScript.js"></script>
+</head>
+<body>
+    <button onclick="returnToSender()" id="backBtn">RETURN</button>
+    <div id="moneyText">💎GEMS: </div>
+    <div id="mapShell"></div>
+    <div id="progressBar">
+        <div id="progressBarSegment"></div>
+    </div>
+    <div id="controls">
+        <input type="number" id="betInput" placeholder="Bet Amount" min="0" oninput="checkValue(this);">
+        <button onclick="startGame()" id="startBtn">START</button>
+    </div>
+</body>
+</html>

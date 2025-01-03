@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎Mines💎</title>
+    <link rel="stylesheet" href="MinesStyles.css">
+    <script src="MinesScript.js"></script>
+</head>
+<body>
+    <button onclick="returnToSender()" id="backBtn">RETURN</button>
+    <div id="multiText">x1.00</div>
+    <div id="mapShell"></div>
+    <div id="controls">
+        <div id="moneyText">💎GEMS: ???</div>
+        <input type="number" id="bombInput" placeholder="Bomb Count" max="20" min="1" oninput="checkValue(this);">
+        <input type="number" id="betInput" placeholder="Bet Amount" min="0" oninput="checkValue(this);">
+        <button onclick="startGame()" id="startBtn">START</button>
+        <button onclick="resetGame(1)" id="resetBtn" disabled>CASH OUT</button>
+    </div>
+</body>
+</html>

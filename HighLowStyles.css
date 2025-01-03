@@ -1,0 +1,118 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-align: center;
+    user-select: none;
+}
+
+button{
+    cursor: pointer;
+}
+
+button:active {
+    background-color: grey;
+}
+
+#backBtn{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.gameButtonsContainer {
+    display: grid;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    justify-items: center;
+    align-items: center;
+}
+
+.gameButtons {
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+    border-radius: 10px;
+}
+
+#multiText{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: #000;
+}
+
+#betInput{
+    position: absolute;
+    width: 250px;
+    top: 70%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+#buttonsContainer {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 70%;
+    left: 56%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+}
+
+#startBtn, #resetBtn {
+    font-size: 30px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#startBtn:disabled, #resetBtn:disabled {
+    opacity: 0.5;
+}
+
+#moneyText{
+    position: absolute;
+    top: 70%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    color: #000;
+}
+
+#cardsImage {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+#cardsImage img {
+    width: 160px;
+    height: 240px;
+    image-rendering: pixelated;
+}
+
+#higherContainer, #lowerContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

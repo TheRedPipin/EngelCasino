@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Low</title>
+    <link rel="stylesheet" href="HighLowStyles.css">
+    <script src="HighLowScript.js"></script>
+</head>
+<body>
+    <button onclick="returnToSender()" id="backBtn">RETURN</button>
+    <div id="multiText">x1.00</div>
+    <div class="gameContainer">
+        <div id="cardsImage">
+            <img id="currentCardImg" src="Cards/Card0.png" alt="Current Card">
+            <img id="nextCardImg" src="Cards/Card52.png" alt="Next Card">
+        </div>
+        <div class="gameButtonsContainer">
+            <div id="higherContainer">
+                <div id="higherPercentage">???%</div>
+                <button onclick="guess(0)" class="gameButtons" disabled><span>&#10514;</span></button>
+            </div>
+            <button onclick="guess(2)" class="gameButtons" disabled><span>&#8651;</span></button>
+            <div id="lowerContainer">
+                <div id="lowerPercentage">???%</div>
+                <button onclick="guess(1)" class="gameButtons" disabled><span>&#10515;</span></button>
+            </div>
+        </div>
+    </div>
+    <div id="moneyText">💎GEMS: ???</div>
+    <input type="number" id="betInput" placeholder="Bet Amount" min="0" oninput="checkValue(this);">
+    <div id="buttonsContainer">
+        <button onclick="startGame()" id="startBtn">START</button>
+        <button onclick="resetGame(1)" id="resetBtn" disabled>CASH OUT</button>
+    </div>
+</body>
+</html>
