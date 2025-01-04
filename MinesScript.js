@@ -77,11 +77,6 @@ window.onload = function() {
             });
             document.getElementById('mapShell').appendChild(button);
         }
-        setInterval(() => {
-            if (parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) != money) {
-                document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
-            }
-        },1000);
     }
     document.getElementById('betInput').max = money;
     setInterval(function() {
@@ -101,7 +96,7 @@ window.onload = function() {
             document.getElementById('resetBtn').disabled = false;
         }
         if (oldMoney != money) {
-            animateMoneyText(money);
+            document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
         }
         oldMoney = money;
     }, 10);
@@ -214,18 +209,4 @@ function checkValue(sender) {
 function returnToSender() {
     localStorage.setItem('money', money);
     window.location.href = 'MainIndex.html';
-}
-
-function animateMoneyText(targetMoney) {
-    const moneyText = document.getElementById('moneyText');
-    let currentMoney = parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) || 0;
-    const increment = (targetMoney - currentMoney) / 50;
-    const interval = setInterval(() => {
-        currentMoney += increment;
-        moneyText.innerText = `💎GEMS: ${currentMoney.toFixed(2)}`;
-        if ((increment > 0 && currentMoney >= targetMoney) || (increment < 0 && currentMoney <= targetMoney)) {
-            clearInterval(interval);
-            moneyText.innerText = `💎GEMS: ${targetMoney.toFixed(2)}`;
-        }
-    }, 10);
 }

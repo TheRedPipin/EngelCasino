@@ -10,6 +10,7 @@ let startMulti = 3;
 let chooseSpeed = 200;
 let started = false;
 let lastBet = 0;
+
 window.onload = function() {
     money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
     for (let i = 0; i < rows; i++){
@@ -50,11 +51,6 @@ window.onload = function() {
             document.getElementById('startBtn').disabled = false;
         }
     }, 10);
-    setInterval(() => {
-        if (parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) != money) {
-            document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
-        }
-    },1000);
 }
 
 function resetMapColors() {
@@ -122,6 +118,7 @@ function startGame() {
         document.getElementById('startBtn').disabled = false;
         document.getElementById('betInput').value = lastBet;
         started = false;
+        document.getElementById('moneyText').innerText = `💎GEMS: ${money}`;
     }, chooseSpeed*10);
 }
 

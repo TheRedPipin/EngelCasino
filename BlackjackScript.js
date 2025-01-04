@@ -3,13 +3,15 @@ let bet = 0;
 let deck = [];
 let playerHand = [];
 let dealerHand = [];
-let playerSplitHand = [];
-let isSplit = false;
+let playerHandIndices = [];
+let dealerHandIndices = [];
 
 window.onload = function() {
     money = parseFloat(localStorage.getItem('money')) || 0;
     document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
-    document.getElementById('betInput').max = money;
+    setInterval(() => {
+        document.getElementById('betInput').max = money;
+    }, 10);
 }
 
 function returnToSender() {
@@ -43,18 +45,18 @@ function placeBet() {
         document.getElementById('hitBtn').disabled = false;
         document.getElementById('standBtn').disabled = false;
         document.getElementById('doubleBtn').disabled = false;
-        document.getElementById('splitBtn').disabled = false;
         startGame();
     }
 }
 
 async function startGame() {
+    document.getElementById('playerHand').innerHTML = '';
+    document.getElementById('dealerHand').innerHTML = '';
     deck = createDeck();
-    shuffleDeck(deck);
-    playerHand.push(await drawCard(document.getElementById('playerHand')));
-    dealerHand.push(await drawCard(document.getElementById('dealerHand')));
-    playerHand.push(await drawCard(document.getElementById('playerHand')));
-    dealerHand.push(await drawCard(document.getElementById('dealerHand')));
+    playerHand.push(await drawCard(document.getElementById('playerHand'), playerHandIndices));
+    dealerHand.push(await drawCard(document.getElementById('dealerHand'), dealerHandIndices, true));
+    playerHand.push(await drawCard(document.getElementById('playerHand'), playerHandIndices));
+    dealerHand.push(await drawCard(document.getElementById('dealerHand'), dealerHandIndices));
     updateHands(0);
 }
 
@@ -68,24 +70,19 @@ function createDeck() {
     return deck;
 }
 
-function shuffleDeck(deck) {
-    for (let i = deck.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [deck[i], deck[j]] = [deck[j], deck[i]];
-    }
-}
-
-function drawCard(target) {
-    const card = deck.pop();
+function drawCard(target, handIndices, isHidden = false) {
+    const index = Math.floor(Math.random() * deck.length);
+    const card = deck[index];
+    handIndices.push(index);
     const cardImg = document.createElement('img');
-    cardImg.src = `docs/assets/Cards/Card${card}.png`;
+    cardImg.src = isHidden ? 'docs/assets/Cards/Card52.png' : `docs/assets/Cards/Card${index}.png`;
     cardImg.classList.add('drawn-card');
     document.getElementById('deck').appendChild(cardImg);
     return new Promise(resolve => {
         setTimeout(() => {
             cardImg.remove();
             const cardElement = document.createElement('img');
-            cardElement.src = `docs/assets/Cards/Card${card}.png`;
+            cardElement.src = isHidden ? 'docs/assets/Cards/Card52.png' : `docs/assets/Cards/Card${index}.png`;
             target.appendChild(cardElement);
             resolve(card);
         }, 500);
@@ -100,18 +97,18 @@ function updateHands(type) {
     playerHandDiv.innerHTML = '';
     dealerHandDiv.innerHTML = '';
 
-    playerHand.forEach(card => {
+    playerHandIndices.forEach(index => {
         const cardImg = document.createElement('img');
-        cardImg.src = `docs/assets/Cards/Card${card}.png`;
+        cardImg.src = `docs/assets/Cards/Card${index}.png`;
         playerHandDiv.appendChild(cardImg);
     });
 
-    dealerHand.forEach((card, index) => {
+    dealerHandIndices.forEach((index, i) => {
         const cardImg = document.createElement('img');
         if (type === 0) {
-            cardImg.src = index === 0 ? 'docs/assets/Cards/Card52.png' : `docs/assets/Cards/Card${card}.png`;
+            cardImg.src = i === 0 ? 'docs/assets/Cards/Card52.png' : `docs/assets/Cards/Card${index}.png`;
         } else {
-            cardImg.src = `docs/assets/Cards/Card${card}.png`;
+            cardImg.src = `docs/assets/Cards/Card${index}.png`;
         }
         dealerHandDiv.appendChild(cardImg);
     });
@@ -121,7 +118,7 @@ function updateHands(type) {
 }
 
 async function hit() {
-    playerHand.push(await drawCard(document.getElementById('playerHand')));
+    playerHand.push(await drawCard(document.getElementById('playerHand'), playerHandIndices));
     updateHands(0);
     if (calculateHandValue(playerHand) > 21) {
         endGame('lose');
@@ -132,11 +129,11 @@ async function stand() {
     const dealerHandDiv = document.getElementById('dealerHand');
     const hiddenCard = dealerHandDiv.children[0];
     hiddenCard.classList.add('reveal-card');
-    hiddenCard.src = `docs/assets/Cards/Card${dealerHand[0]}.png`;
+    hiddenCard.src = `docs/assets/Cards/Card${dealerHandIndices[0]}.png`;
 
     const drawDealerCard = async () => {
         while (calculateHandValue(dealerHand) < 17) {
-            dealerHand.push(await drawCard(dealerHandDiv));
+            dealerHand.push(await drawCard(dealerHandDiv, dealerHandIndices));
             updateHands(1);
         }
         const playerValue = calculateHandValue(playerHand);
@@ -165,18 +162,6 @@ function double() {
     }
 }
 
-function split() {
-    if (playerHand.length === 2 && playerHand[0] === playerHand[1] && money >= bet) {
-        money -= bet;
-        playerSplitHand = [playerHand.pop()];
-        playerHand.push(drawCard());
-        playerSplitHand.push(drawCard());
-        isSplit = true;
-        document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
-        updateHands(0);
-    }
-}
-
 function calculateHandValue(hand) {
     let value = 0;
     let aces = 0;
@@ -201,7 +186,6 @@ function endGame(result) {
     document.getElementById('hitBtn').disabled = true;
     document.getElementById('standBtn').disabled = true;
     document.getElementById('doubleBtn').disabled = true;
-    document.getElementById('splitBtn').disabled = true;
     if (result === 'win') {
         money += bet * 2;
     } else if (result === 'draw') {
@@ -211,4 +195,6 @@ function endGame(result) {
     document.getElementById('betBtn').disabled = false;
     playerHand = [];
     dealerHand = [];
+    playerHandIndices = [];
+    dealerHandIndices = [];
 }

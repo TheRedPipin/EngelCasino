@@ -3,29 +3,15 @@ if (localStorage.getItem('money') === null) {
 }
 
 window.onload = function() {
-    animateMoneyText(money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2)));
+    money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
+    document.getElementById('moneyText').innerText = `💎Gems: ${money.toFixed(2)}`;
     createFallingCards();
     checkGemButtonCooldown();
     setInterval(() => {
-        if (parseFloat(moneyText.innerText.replace('💎Gems: ', '')) != money) {
+        if (parseFloat(document.getElementById('moneyText').innerText.replace('💎Gems: ', '')) != money) {
             document.getElementById('moneyText').innerText = `💎Gems: ${money.toFixed(2)}`;
         }
-    },1000);
-    
-}
-
-function animateMoneyText(targetMoney) {
-    const moneyText = document.getElementById('moneyText');
-    let currentMoney = parseFloat(moneyText.innerText.replace('💎Gems: ', '')) || 0;
-    const increment = (targetMoney - currentMoney) / 50;
-    const interval = setInterval(() => {
-        currentMoney += increment;
-        moneyText.innerText = `💎Gems: ${currentMoney.toFixed(2)}`;
-        if ((increment > 0 && currentMoney >= targetMoney) || (increment < 0 && currentMoney <= targetMoney)) {
-            clearInterval(interval);
-            moneyText.innerText = `💎Gems: ${targetMoney.toFixed(2)}`;
-        }
-    }, 10);
+    }, 1000);
 }
 
 function createFallingCards() {
@@ -46,7 +32,7 @@ function createFallingCards() {
 }
 
 function createCard(cardImages) {
-    const images = cardImages
+    const images = cardImages;
     const card = document.createElement('img');
     card.src = images[Math.floor(Math.random() * images.length)];
     card.classList.add('falling-card');
@@ -60,17 +46,17 @@ function createCard(cardImages) {
 
 function resetMoney() {
     localStorage.setItem('money', 0);
-    animateMoneyText(money = 0);
+    money = 0;
+    document.getElementById('moneyText').innerText = `💎Gems: ${money.toFixed(2)}`;
 }
 
 function addGem() {
     if (Date.now() - localStorage.getItem('gemBtnCooldown') < 10000) {
         return;
     }
-    let money = parseFloat(localStorage.getItem('money'));
-    money += 1;
+    money = parseFloat(localStorage.getItem('money')) + 1;
     localStorage.setItem('money', money);
-    animateMoneyText(money);
+    document.getElementById('moneyText').innerText = `💎Gems: ${money.toFixed(2)}`;
     disableGemButton();
 }
 

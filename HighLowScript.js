@@ -14,40 +14,35 @@ let higherPercentage = 0;
 let lowerPercentage = 0;
 window.onload = function() {
     money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
-    animateMoneyText(money);
+    document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
     setInterval(() => {
         document.getElementById('betInput').max = money;
         document.getElementById('resetBtn').innerText = `Cash Out \n💎${(tempMoney*currentMulti).toFixed(2)}`;
         document.getElementById('multiText').innerHTML = `x${currentMulti}`;
         document.getElementById('currentCardImg').src = `docs/assets/Cards/Card${currentCard}.png`;
         if (oldMoney != money) {
-            animateMoneyText(money);
+            document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
         }
-        higherPercentage = ((13 - currentCard) / 13) * 100;
+        let higherCount = 0;
+        let lowerCount = 0;
+        for (let card of deck) {
+            if (card > currentCard) {
+                higherCount++;
+            } else if (card < currentCard) {
+                lowerCount++;
+            }
+        }
+        higherPercentage = (higherCount / 48) * 100;
+        lowerPercentage = (lowerCount / 48) * 100;
         document.getElementById('higherPercentage').innerHTML = `${higherPercentage.toFixed(2)}%`;
-        lowerPercentage = ((currentCard) / 13) * 100;
         document.getElementById('lowerPercentage').innerHTML = `${lowerPercentage.toFixed(2)}%`;
         oldMoney = money;
     }, 10);
     setInterval(() => {
-        if (parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) != money) {
+        if (parseFloat(document.getElementById('moneyText').innerText.replace('💎GEMS: ', '')) != money) {
             document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
         }
-    },1000);
-}
-
-function animateMoneyText(targetMoney) {
-    const moneyText = document.getElementById('moneyText');
-    let currentMoney = parseFloat(moneyText.innerText.replace('💎GEMS: ', '')) || 0;
-    const increment = (targetMoney - currentMoney) / 50;
-    const interval = setInterval(() => {
-        currentMoney += increment;
-        moneyText.innerText = `💎GEMS: ${currentMoney.toFixed(2)}`;
-        if ((increment > 0 && currentMoney >= targetMoney) || (increment < 0 && currentMoney <= targetMoney)) {
-            clearInterval(interval);
-            moneyText.innerText = `💎GEMS: ${targetMoney.toFixed(2)}`;
-        }
-    }, 10);
+    }, 1000);
 }
 
 function startGame() {
@@ -81,6 +76,7 @@ function resetGame(type) {
     for (let button of gameButtons) {
         button.disabled = true;
     }
+    document.getElementById('moneyText').innerText = `💎GEMS: ${money.toFixed(2)}`;
 }
 
 function guess(type) {
@@ -89,7 +85,6 @@ function guess(type) {
     const nextCardImg = document.getElementById('nextCardImg');
     nextCardImg.classList.add('card-reveal');
     nextCardImg.src = `docs/assets/Cards/Card${nextCard}.png`;
-
     setTimeout(() => {
         nextCardImg.classList.remove('card-reveal');
         if (type == 0 && currentCard <= nextCard) {
