@@ -25,7 +25,7 @@ window.onload = function() {
         }
         higherPercentage = ((13 - currentCard) / 13) * 100;
         document.getElementById('higherPercentage').innerHTML = `${higherPercentage.toFixed(2)}%`;
-        lowerPercentage = (currentCard / 13) * 100;
+        lowerPercentage = ((currentCard) / 13) * 100;
         document.getElementById('lowerPercentage').innerHTML = `${lowerPercentage.toFixed(2)}%`;
         oldMoney = money;
     }, 10);
