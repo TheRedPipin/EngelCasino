@@ -23,7 +23,7 @@ window.onload = function() {
         if (oldMoney != money) {
             animateMoneyText(money);
         }
-        higherPercentage = ((12 - currentCard) / 13) * 100;
+        higherPercentage = ((13 - currentCard) / 13) * 100;
         document.getElementById('higherPercentage').innerHTML = `${higherPercentage.toFixed(2)}%`;
         lowerPercentage = (currentCard / 13) * 100;
         document.getElementById('lowerPercentage').innerHTML = `${lowerPercentage.toFixed(2)}%`;
