@@ -34,7 +34,9 @@ function loadMoney() {
 // Create the game board with buttons
 function createGameBoard() {
     const mapShell = document.getElementById('mapShell');
+    const endBox = document.getElementById('endBox');
     mapShell.innerHTML = ''; // Clear existing map elements
+    mapShell.appendChild(endBox); // Append the end box to the map shell
     mapShell.style.display = 'grid'; // Use CSS grid for layout
     mapShell.style.gridTemplateColumns = `repeat(${columns}, 1fr)`; // Set column count
     mapShell.style.gap = '5px'; // Add spacing between buttons
@@ -249,6 +251,7 @@ function showEndBox(type) {
 // Start a new game
 function startGame() {
     tempMoney = parseFloat(document.getElementById('betInput').value);
+    console.log(tempMoney);
     if (tempMoney <= 0) {
         alert('Bet amount must be greater than 0.');
         return;

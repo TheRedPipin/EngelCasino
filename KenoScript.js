@@ -6,7 +6,7 @@ let amountChosen = 0;
 let correctAmount = 0;
 let tempMoney = 0;
 let multipliers = [];
-let startMulti = 3;
+let startMulti = 5;
 let chooseSpeed = 200;
 let started = false;
 let lastBet = 0;
@@ -28,12 +28,12 @@ window.onload = function() {
                 let column = parseInt(this.dataset.column);
                 if (map[row][column] === 0 && amountChosen < 10) {
                     map[row][column] = 1;
-                    this.style.border = '5px solid black';
+                    this.style.border = '5px solid orange';
                     amountChosen++;
                 }
                 else if (map[row][column] === 1) {
                     map[row][column] = 0;
-                    this.style.borderColor = 'black';
+                    this.style.border = '';
                     amountChosen--;
                 }
                 updateProgressBar();
@@ -60,7 +60,7 @@ function resetMapColors() {
     }
     let progressBarSegments = document.getElementsByClassName('progressBarSegment');
     for (let segment of progressBarSegments) {
-        segment.style.backgroundColor = 'white';
+        segment.style.backgroundColor = '#6a0dad';
     }
     return;
 }
@@ -96,9 +96,9 @@ function startGame() {
         if (map[row][column] === 1) {
             correctAmount++;
             document.getElementById('progressBar').children[correctAmount-1].style.backgroundColor = 'orange';
-            button.style.backgroundColor = 'green';
+            button.style.backgroundColor = '#00ff00'; // Winning color
         } else {
-            button.style.backgroundColor = 'red';
+            button.style.backgroundColor = '#ff0000'; // Losing color
         }
         chosenCount++;
     }, chooseSpeed);
