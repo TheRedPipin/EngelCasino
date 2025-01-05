@@ -7,7 +7,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
     overflow: hidden;
 }
 
@@ -19,6 +19,7 @@ body {
     text-align: center;
     width: 100%;
     text-shadow: 2px 2px 4px #aaa;
+    animation: pulse 2s infinite;
 }
 
 #moneyText {
@@ -35,7 +36,7 @@ body {
     position: absolute;
     bottom: 10%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0);
     font-size: 20px;
     color: #333;
     text-align: center;
@@ -44,6 +45,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #resetBtn:hover {
@@ -54,15 +56,15 @@ body {
     position: absolute;
     bottom: 20%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0);
     font-size: 20px;
     color: #333;
-    text-align: center;
     background-color: #00ccff;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #gemBtn:disabled {
@@ -87,6 +89,7 @@ body {
 .dropdown {
     position: relative;
     display: inline-block;
+    margin-right: 10px; /* Add margin to separate dropdowns */
 }
 
 .dropdown-content {
@@ -96,8 +99,9 @@ body {
     min-width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px; /* Smooth transition between dropdowns */
     overflow: hidden;
+    animation: dropdown-fall 0.5s ease-out;
 }
 
 .dropdown-content a {
@@ -106,18 +110,30 @@ body {
     text-decoration: none;
     display: block;
     transition: background-color 0.3s;
+    border-bottom: 1px solid #ddd;
 }
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
 }
 
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
 .dropdown:hover .dropdown-content {
     display: block;
+    animation: dropdown-fall 0.5s ease-out;
+}
+
+.dropdown:not(:hover) .dropdown-content {
+    animation: dropdown-hide 0.5s ease-out;
+    display: none;
 }
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+    border-radius: 5px 5px 0 0; /* Smooth transition between dropdowns */
 }
 
 .dropbtn {
@@ -127,8 +143,9 @@ body {
     font-size: 16px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0; /* Smooth transition between dropdowns */
     transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .dropbtn:hover {
@@ -143,6 +160,40 @@ body {
     100% {
         transform: translateY(100vh) rotate(360deg);
         opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes dropdown-fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropdown-hide {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
     }
 }
 

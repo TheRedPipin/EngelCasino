@@ -28,7 +28,7 @@ window.onload = function() {
                 let column = parseInt(this.dataset.column);
                 if (map[row][column] === 0 && amountChosen < 10) {
                     map[row][column] = 1;
-                    this.style.borderColor = 'orange';
+                    this.style.border = '5px solid black';
                     amountChosen++;
                 }
                 else if (map[row][column] === 1) {

@@ -98,14 +98,21 @@ button{
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column-reverse;
+    border-radius: 10px; /* Add border radius */
+    overflow: hidden;
 }
 
 .progressBarSegment {
     width: 100%;
-    background-color: white;
+    background-color: white; /* Ensure segments are white initially */
     border-top: 1px solid #000;
     box-sizing: border-box;
     position: relative;
+    overflow: visible;
+}
+
+.progressBarSegment.picked {
+    animation: fillSegment var(--animation-duration, 1s) ease-in-out forwards; /* Add animation with variable duration */
 }
 
 .multiplierText {
@@ -142,7 +149,16 @@ button{
 }
 
 .mapSpot.enlarge {
-    animation: enlarge 0.5s ease-in-out;
+    animation: enlarge var(--animation-duration, 0.5s) ease-in-out; /* Add variable duration */
+}
+
+@keyframes fillSegment {
+    0% {
+        background-color: white;
+    }
+    100% {
+        background-color: orange;
+    }
 }
 
 /* Mobile support */

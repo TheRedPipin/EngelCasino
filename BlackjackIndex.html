@@ -6,13 +6,13 @@
     <title>Blackjack</title>
     <script src="BlackjackScript.js"></script>
     <link rel="stylesheet" href="BlackjackStyles.css">
-    <link rel="icon" type="image/x-icon" href="docs\assets\Cards\Card10.png">
+    <link rel="icon" type="image/x-icon" href="docs/assets/Cards/Card10.png">
 </head>
 <body>
     <button onclick="returnToSender()" id="backBtn">RETURN</button>
     <div id="moneyText">💎GEMS: ???</div>
     <div id="deck">
-        <img src="docs\assets\Cards/Card52.png" alt="Deck">
+        <img src="docs/assets/Cards/Card52.png" alt="Deck">
     </div>
     <div id="gameContainer">
         <div id="dealerValue" class="hand-value">Dealer: ???</div>
@@ -24,7 +24,6 @@
         <button onclick="hit()" id="hitBtn" disabled>HIT</button>
         <button onclick="stand()" id="standBtn" disabled>STAND</button>
         <button onclick="double()" id="doubleBtn" disabled>DOUBLE</button>
-        <button onclick="split()" id="splitBtn" disabled>SPLIT</button>
     </div>
     <div id="betContainer">
         <input type="number" id="betInput" placeholder="Bet Amount" min="0" oninput="checkValue(this);">

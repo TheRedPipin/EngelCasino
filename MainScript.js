@@ -3,13 +3,15 @@ if (localStorage.getItem('money') === null) {
 }
 
 window.onload = function() {
-    money = parseFloat(parseFloat(localStorage.getItem('money')).toFixed(2));
-    document.getElementById('moneyText').innerText = `💎Gems: ${money.toFixed(2)}`;
+    money = parseFloat(localStorage.getItem('money')).toFixed(2);
+    const moneyText = document.getElementById('moneyText');
+    moneyText.innerText = `💎Gems: ${money}`;
     createFallingCards();
     checkGemButtonCooldown();
     setInterval(() => {
-        if (parseFloat(document.getElementById('moneyText').innerText.replace('💎Gems: ', '')) != money) {
-            document.getElementById('moneyText').innerText = `💎Gems: ${money.toFixed(2)}`;
+        const currentMoney = parseFloat(moneyText.innerText.replace('💎Gems: ', ''));
+        if (currentMoney != money) {
+            moneyText.innerText = `💎Gems: ${money}`;
         }
     }, 1000);
 }
@@ -32,9 +34,8 @@ function createFallingCards() {
 }
 
 function createCard(cardImages) {
-    const images = cardImages;
     const card = document.createElement('img');
-    card.src = images[Math.floor(Math.random() * images.length)];
+    card.src = cardImages[Math.floor(Math.random() * cardImages.length)];
     card.classList.add('falling-card');
     card.style.left = `${Math.random() * 100}vw`;
     card.style.animationDuration = `${Math.random() * 5 + 5}s`;

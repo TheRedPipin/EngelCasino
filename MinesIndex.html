@@ -12,13 +12,18 @@
 <body>
     <button onclick="returnToSender()" id="backBtn">RETURN</button>
     <div id="multiText">x1.00</div>
-    <div id="mapShell"></div>
+    <div id="mapShell">
+    </div>
     <div id="controls">
         <div id="moneyText">💎GEMS: ???</div>
-        <input type="number" id="bombInput" placeholder="Bomb Count" max="20" min="1" oninput="checkValue(this);">
-        <input type="number" id="betInput" placeholder="Bet Amount" min="0" oninput="checkValue(this);">
+        <input type="number" id="bombInput" placeholder="Bomb Count" max="20" min="1">
+        <input type="number" id="betInput" placeholder="Bet Amount" min="0">
         <button onclick="startGame()" id="startBtn">START</button>
         <button onclick="resetGame(1)" id="resetBtn" disabled>CASH OUT</button>
+    </div>
+    <div id="endBox" class="endBox">
+        <h2 id="endBoxTitle"></h2>
+        <p id="endBoxMessage"></p>
     </div>
 </body>
 </html>

@@ -40,6 +40,7 @@ body{
     height: 100px;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 40px;
 }
 
 #controls {
@@ -122,6 +123,47 @@ body{
 .shake {
     animation: shake 0.5s;
     animation-iteration-count: 1;
+}
+
+#endBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#endBox.visible {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#endBox.win {
+    border-color: green;
+    background-color: #e0ffe0;
+}
+
+#endBox.lose {
+    border-color: red;
+    background-color: #ffe0e0;
+}
+
+#endBox h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+
+#endBox p {
+    margin: 0;
+    font-size: 18px;
+    color: #666;
 }
 
 /* Mobile support */
