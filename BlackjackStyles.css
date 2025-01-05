@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #2e8b57; /* Change background color to a green felt-like color */
+    background: linear-gradient(#1eb861 0%, #1e361b 100%); /* Add gradient background */
     font-family: "Arial Black", Gadget, sans-serif;
     text-align: center;
     user-select: none;
