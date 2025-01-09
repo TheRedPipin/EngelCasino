@@ -252,7 +252,7 @@ function showEndBox(type) {
 function startGame() {
     tempMoney = parseFloat(document.getElementById('betInput').value);
     console.log(tempMoney);
-    if (tempMoney <= 0) {
+    if (!tempMoney || tempMoney <= 0) {
         alert('Bet amount must be greater than 0.');
         return;
     }

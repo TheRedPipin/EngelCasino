@@ -1,5 +1,10 @@
+@font-face {
+    font-family: 'gamblingFont';
+    src: url(docs/assets/Fonts/JqkasWild-w1YD6.ttf);
+}
+
 body {
-    font-family: 'Montserrat', sans-serif; /* Change font to Montserrat */
+    font-family: 'gamblingFont', sans-serif; /* Change font to Montserrat */
     font-weight: bold;
     letter-spacing: 1px;
     display: flex;
